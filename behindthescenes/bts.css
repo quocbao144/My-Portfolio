@@ -305,6 +305,13 @@ video {
 .btn-right {
   text-align: right;
 }
+.logo a {
+  color: inherit; /* Giữ nguyên màu trắng logo */
+  text-decoration: none; /* Bỏ gạch chân */
+}
+.logo a:hover {
+  opacity: 0.8; /* Hiệu ứng hover nhẹ */
+}
 
 
 
