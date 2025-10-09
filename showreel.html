@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quốc Bảo Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="showreel.css" />
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <!-------------------------------------------------------------------------------------------------------- -->
+ <header class="site-header">
+  <div class="logo">QUỐC BẢO</div>
+  <nav class="nav-menu">
+    <a href="index.html" class="nav-link">PORTFOLIO</a>
+    <a href="showreel.html" class="nav-link active">SHOWREEL</a>
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="contact.html" class="nav-link">CONTACT</a>
+  </nav>
+</header>
+ <!-------------------------------------------------------------------------------------------------------- -->
+<main>
+  <!-- Video player trên cùng -->
+<div class="video-container">
+  <iframe
+    id="mainVideo"
+    src="https://www.youtube.com/embed/d4_oWRds-wI?autoplay=1&mute=1&loop=1&playlist=d4_oWRds-wI&controls=1&modestbranding=1&rel=0&playsinline=1"
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+  <!-- Thumbnail row bên dưới -->
+  <div class="thumbnail-wrapper">
+  <button class="scroll-btn left" onclick="scrollThumbnails(-1)">&#8249;</button>
+
+ <div class="thumbnail-row" id="thumbnailRow">
+
+    <div class="thumb-card" onclick="switchVideo('d4_oWRds-wI')">
+    <div class="thumb-wrapper">
+      <img src="footageshowreel/wedding.jpg" alt="Wedding" />
+      <!-- Overlay hiển thị khi hover -->
+      <div class="thumb-overlay">
+        <p>Romantic</p>
+        <p>Joyful</p>
+        <p>Dreamy</p>
+      </div>
+    </div>
+    <p class="thumb-caption">WEDDING</p>
+  </div>
+
+    <div class="thumb-card" onclick="switchVideo('3G2WyNdbWdw')">
+    <div class="thumb-wrapper">
+      <img src="footageshowreel/nature.jpg" alt="Nature" />
+      <div class="thumb-overlay">
+        <p>Calm</p>
+        <p>Fresh</p>
+        <p>Adventurous</p>
+      </div>
+    </div>
+    <p class="thumb-caption">NATURE</p>
+  </div>
+
+    <div class="thumb-card" onclick="switchVideo('mGRnp2n_2gY')">
+    <div class="thumb-wrapper">
+      <img src="footageshowreel/event.jpg" alt="Event" />
+      <div class="thumb-overlay">
+        <p>Exciting</p>
+        <p>Vibrant</p>
+        <p>Memorable</p>
+      </div>
+    </div>
+    <p class="thumb-caption">EVENT</p>
+  </div>
+
+  <div class="thumb-card" onclick="switchVideo('summer.mp4')">
+    <div class="thumb-wrapper">
+      <img src="footageshowreel/summer.jpg" alt="Summer" />
+      <div class="thumb-overlay">
+        <p>Sunny</p>
+        <p>Relaxing</p>
+        <p>Freedom</p>
+      </div>
+    </div>
+    <p class="thumb-caption">SUMMER BEACH</p>
+  </div>
+  
+  <button class="scroll-btn right" onclick="scrollThumbnails(1)">&#8250;</button>
+</div>
+
+</div>
+
+</div>
+
+  
+</main>
+<script>
+  function scrollThumbnails(direction) {
+    const row = document.getElementById('thumbnailRow');
+    const scrollAmount = 260; // pixel cuộn mỗi lần (bằng width thumbnail + gap)
+    row.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
+</script>
+
+<script>
+function switchVideo(videoId) {
+  const iframe = document.getElementById('mainVideo');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&modestbranding=1&rel=0&playsinline=1`;
+}
+
+</script>
+
+
+<footer class="site-footer">
+  <div class="footer-wrapper">
+    <div class="social-icons">
+      <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    <p class="copyright">
+      © 2025 Quốc Bảo – quocbao291200@gmail.com
+    </p>
+  </div>
+</footer>
+
+</body>
