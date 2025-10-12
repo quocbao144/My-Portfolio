@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quốc Bảo Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="foodstreet.css" />
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+
+</head>
+<body>
+  <!-------------------------------------------------------------------------------------------------------- -->
+  <header class="site-header">
+<div class="logo">
+  <a href="../index.html">QUỐC BẢO</a> 
+</div>
+    <nav class="nav-menu">
+      <a href="../index.html" class="nav-link">PORTFOLIO</a>
+      <a href="../showreel.html" class="nav-link">SHOWREEL</a>
+      <a href="../about.html" class="nav-link">ABOUT</a>
+      <a href="../contact.html" class="nav-link">CONTACT</a>
+    </nav>
+  </header>
+   <!-------------------------------------------------------------------------------------------------------- -->
+   <!-- Wedding Section -->
+
+
+ <section class="wedding-video-section">
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/fXFQeG7yDb4?autoplay=1&mute=1&loop=1&playlist=fXFQeG7yDb4&controls=1&modestbranding=1&rel=0&playsinline=1"
+        title="YouTube video player"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+
+<section class="gallery-section">
+  <div class="gallery-grid">
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.104.1.jpg" alt="Frame 1" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.14.1.jpg" alt="Frame 2" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.18.1.jpg" alt="Frame 3" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.4.1.jpg" alt="Frame 4" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.51.1.jpg" alt="Frame 5" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.52.1.jpg" alt="Frame 6" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.7.1.jpg" alt="Frame 7" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_1.96.1.jpg" alt="Frame 8" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_2.12.1.jpg" alt="Frame 9" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_3.3.1.jpg" alt="Frame 10" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_2.8.1.jpg" alt="Frame 11" />
+    <img src="./chillgirlimg/Still 2025-10-07 153147_1.7.1_2.2.1.jpg" alt="Frame 12" />
+    <!-- Bạn thêm bao nhiêu ảnh cũng được, nó sẽ tự xuống hàng -->
+  </div>
+</section>
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+  <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+  <a class="next" onclick="changeImage(1)">&#10095;</a>
+</div>
+<script>
+  const images = document.querySelectorAll('.gallery-grid img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  let currentIndex = 0;
+
+  const imageArray = Array.from(images).map(img => img.src);
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'block';
+      lightboxImg.src = img.src;
+      currentIndex = index;
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+  }
+
+  function changeImage(n) {
+    currentIndex += n;
+    if (currentIndex < 0) currentIndex = imageArray.length - 1;
+    if (currentIndex >= imageArray.length) currentIndex = 0;
+    lightboxImg.src = imageArray[currentIndex];
+  }
+
+  window.addEventListener('keydown', function (e) {
+    if (lightbox.style.display === 'block') {
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+</script>
+<section class="bts-section">
+  <div class="bts-title">
+    <h2><em>Behind-the-scenes</em></h2>
+  </div>
+  <div class="bts-content">
+    <p>This project was filmed on the Sony A6700 using 18–135mm, 24–70mm, and 11mm lenses, paired with an ND filter to control exposure under natural sunlight.</p>
+    <p>
+     Set at a vintage-style homestay in Da Lat surrounded by a lush garden, the film captures the daily life of a young woman — tending to her plants, gardening, cooking, and reading by the window. The production relied entirely on natural light, using its soft, golden glow to bring out the calm and nostalgic beauty of the scene.
+
+Each lens played a unique role: the 11mm captured the airy charm of the garden, the 18–135mm offered versatile framing for movement and emotion, and the 24–70mm brought intimate focus to quiet, personal moments. The result is a warm, organic visual tone that reflects both the vintage atmosphere and the peaceful rhythm of slow living in Da Lat.
+    </p>
+  </div>
+</section>
+<section class="carousel-section">
+  <div class="carousel-track">
+    <img src="./imgbts/IMG_0709.jpg" alt="Frame 1">
+    <img src="./imgbts/IMG_0710.jpg" alt="Frame 2">
+    <img src="./imgbts/IMG_0713.jpg" alt="Frame 3">
+    <img src="./imgbts/IMG_0714.jpg" alt="Frame 4">
+    <img src="./imgbts/IMG_0716.jpg" alt="Frame 5">
+    <img src="./imgbts/IMG_0717.jpg" alt="Frame 6">
+    <img src="./imgbts/IMG_0719.jpg" alt="Frame 7">
+    <!-- Duplicate for infinite loop effect -->
+    <img src="./imgbts/IMG_0709.jpg" alt="Frame 1 Duplicate">
+    <img src="./imgbts/IMG_0710.jpg" alt="Frame 2 Duplicate">
+    <img src="./imgbts/IMG_0713.jpg" alt="Frame 3 Duplicate">
+    <img src="./imgbts/IMG_0714.jpg" alt="Frame 4 Duplicate">
+    <img src="./imgbts/IMG_0716.jpg" alt="Frame 5 Duplicate">
+    <img src="./imgbts/IMG_0717.jpg" alt="Frame 6 Duplicate">
+    <img src="./imgbts/IMG_0719.jpg" alt="Frame 7 Duplicate">
+  </div>
+
+  <div class="carousel-title">
+    <h2>BEHIND THE SCENES <br><span>Photo</span></h2>
+    <p>Filmed on the Sony A6700 with 18–135mm, 24–70mm, and 11mm lenses using an ND filter, this project captures a girl’s peaceful daily life — gardening, cooking, and reading — at a vintage homestay in Da Lat.
+Shot entirely under natural light, the visuals reflect the warmth, calmness, and nostalgic beauty of slow living.</p>
+  </div>
+</section>
+<div class="project-navigation">
+  <!-- Nút bên trái: Dự án trước đó -->
+  <a href="previous-project.html" class="project-btn btn-left">
+    <span class="arrow">❮</span> Previous Project
+  </a>
+
+  <!-- Nút bên phải: Dự án tiếp theo -->
+  <a href="next-project.html" class="project-btn btn-right">
+    Next Project <span class="arrow">❯</span>
+  </a>
+</div>
+
+
+
+
+
+<footer class="site-footer">
+  <div class="footer-wrapper">
+    <div class="social-icons">
+      <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    <p class="copyright">
+      © 2025 Quốc Bảo – quocbao291200@gmail.com
+    </p>
+  </div>
+</footer>
+</html>

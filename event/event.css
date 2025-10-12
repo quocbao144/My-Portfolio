@@ -24,6 +24,14 @@ body {
   margin-left: 10%;             /* đẩy sang phải 20% màn hình */
   z-index: 2;
 }
+.logo a {
+  color: inherit; /* Giữ nguyên màu trắng logo */
+  text-decoration: none; /* Bỏ gạch chân */
+}
+.logo a:hover {
+  opacity: 0.8; /* Hiệu ứng hover nhẹ */
+}
+
 
 
 

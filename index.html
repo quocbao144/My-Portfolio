@@ -11,21 +11,32 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
 </head>
 <body>
   <!-------------------------------------------------------------------------------------------------------- -->
- <header class="site-header">
-<div class="logo">
-  <a href="index.html">QUỐC BẢO</a>
-</div>
-  <nav class="nav-menu">
+<header class="site-header">
+  <div class="logo">
+    <a href="index.html">QUỐC BẢO</a>
+  </div>
+
+  <!-- Nút ba gạch cho mobile -->
+  <button class="hamburger" aria-label="Mở menu" aria-controls="primary-nav" aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Menu chính -->
+  <nav class="nav-menu" id="primary-nav">
     <a href="#portfolio" class="nav-link active">PORTFOLIO</a>
     <a href="showreel.html" class="nav-link">SHOWREEL</a>
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="contact.html" class="nav-link">CONTACT</a>
   </nav>
-
 </header>
+
    <!-------------------------------------------------------------------------------------------------------- -->
 
 <section class="gallery">
@@ -36,7 +47,7 @@
     <h3>NATURE</h3>
   </a>
 
-  <a href="summer.html" class="gallery-item">
+  <a href="./summer/summer.html" class="gallery-item">
     <div class="image-wrapper">
       <img src="images/summer.jpg" alt="Summer" class="image-zoom">
     </div>
@@ -69,7 +80,7 @@
     </div>
     <h3>DANCING</h3>
   </a>
-    <a href="./dancing/dancing1.html" class="gallery-item">
+    <a href="./flower/flower.html" class="gallery-item">
     <div class="image-wrapper">
       <img src="images/flower.jpg" alt="flower" class="image-zoom">
     </div>
@@ -82,14 +93,14 @@
     <h3>CHILL GIRL VLOG</h3>
   </a>
   </a>
-    <a href="./dancing/dancing1.html" class="gallery-item">
+    <a href="./foodstreet/foodstreet.html" class="gallery-item">
     <div class="image-wrapper">
       <img src="images/foodstreet.jpg" alt="foodstreet" class="image-zoom">
     </div>
     <h3>FOOD STREET</h3>
   </a>
   </a>
-    <a href="./dancing/dancing1.html" class="gallery-item">
+    <a href="./cafevlog/cafevlog.html" class="gallery-item">
     <div class="image-wrapper">
       <img src="images/cafevlog.jpg" alt="cafevlog" class="image-zoom">
     </div>
@@ -99,15 +110,49 @@
 </section>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById("mobileMenu");
-    if (menu.style.display === "flex") {
-      menu.style.display = "none";
-    } else {
-      menu.style.display = "flex";
+  (function () {
+    const burger = document.querySelector('.hamburger');
+    const nav = document.getElementById('primary-nav');
+    if (!burger || !nav) return;
+
+    function openMenu() {
+      burger.classList.add('is-active');
+      nav.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('no-scroll');
     }
-  }
+
+    function closeMenu() {
+      burger.classList.remove('is-active');
+      nav.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
+    }
+
+    function toggleMenu() {
+      nav.classList.contains('is-open') ? closeMenu() : openMenu();
+    }
+
+    burger.addEventListener('click', toggleMenu);
+
+    // Đóng khi bấm link trong menu
+    nav.addEventListener('click', (e) => {
+      if (e.target.closest('.nav-link')) closeMenu();
+    });
+
+    // Đóng khi bấm ra ngoài
+    document.addEventListener('click', (e) => {
+      const inside = nav.contains(e.target) || burger.contains(e.target);
+      if (!inside && nav.classList.contains('is-open')) closeMenu();
+    });
+
+    // Đóng khi nhấn Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
+    });
+  })();
 </script>
+
 
 
 <script>
