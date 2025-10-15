@@ -19,18 +19,39 @@
 </head>
 <body>
   <!-------------------------------------------------------------------------------------------------------- -->
- <header class="site-header">
-<div class="logo">
-  <a href="index.html">QUỐC BẢO</a>
-</div>
-  <nav class="nav-menu">
-    <a href="index.html" class="nav-link">PORTFOLIO</a>
-    <a href="showreel.html" class="nav-link ">SHOWREEL</a>
-    <a href="about.html" class="nav-link">ABOUT</a>
-    <a href="#contact" class="nav-link active">CONTACT</a>
+<header class="site-header">
+  <div class="logo">
+    <a href="index.html">QUỐC BẢO</a>
+  </div>
+
+  <!-- Nút ba gạch (mobile) -->
+  <button class="hamburger" aria-label="Mở menu" aria-controls="primary-nav" aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Nav chính (dùng cho desktop) -->
+  <nav class="nav-menu" id="primary-nav">
+    <a href="./index.html" class="nav-link ">PORTFOLIO</a>
+    <a href="./showreel.html" class="nav-link">SHOWREEL</a>
+    <a href="./about.html" class="nav-link">ABOUT</a>
+    <a href="./contact.html" class="nav-link active ">CONTACT</a>
   </nav>
 </header>
- <!-------------------------------------------------------------------------------------------------------- -->
+<!-- Overlay menu (mobile) – nền trắng, chữ đen như mockup -->
+<nav class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+  <div class="overlay-inner">
+    <button class="overlay-close" aria-label="Đóng menu">&times;</button>
+    <a href="./index.html" class="overlay-link">PORTFOLIO</a>
+    <a href="./showreel.html" class="overlay-link">SHOWREEL</a>
+    <a href="./about.html" class="overlay-link">ABOUT</a>
+    <a href="./contact.html" class="overlay-link">CONTACT</a>
+  </div>
+</nav>
+
+
+   <!-------------------------------------------------------------------------------------------------------- -->
 <section class="contact-section">
   <span class="tag">CONTACT INFORMATION</span>
   <h2>Come and visit our offices <br> around the world</h2>
@@ -63,7 +84,44 @@
 
   </div>
 </section>
+ <!-------------------------------------------------------------------------------------------------------- -->
+<script>
+  (function () {
+    const burger = document.querySelector('.hamburger');
+    const overlay = document.getElementById('mobileOverlay');
 
+    if (!burger || !overlay) return;
+
+    function openMenu() {
+      burger.classList.add('is-active');
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+      burger.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      burger.classList.remove('is-active');
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+
+    burger.addEventListener('click', () => {
+      overlay.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    // Đóng khi click link hoặc bấm ra ngoài / phím ESC
+    overlay.addEventListener('click', (e) => {
+      if (e.target.classList.contains('overlay-link') || e.target.classList.contains('overlay-close') || e.target === overlay) {
+        closeMenu();
+      }
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+
+ <!-------------------------------------------------------------------------------------------------------- -->
 
 
 </body>
