@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quốc Bảo Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="mv.css" />
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+
+</head>
+<body>
+     <!-------------------------------------------------------------------------------------------------------- -->
+<header class="site-header">
+  <div class="logo">
+     <a href="../index.html">QUỐC BẢO</a>
+  </div>
+
+  <!-- Nút ba gạch (mobile) -->
+  <button class="hamburger" aria-label="Mở menu" aria-controls="primary-nav" aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Nav chính (dùng cho desktop) -->
+  <nav class="nav-menu" id="primary-nav">
+    <a href="../index.html" class="nav-link ">PORTFOLIO</a>
+    <a href="../showreel.html" class="nav-link">SHOWREEL</a>
+    <a href="../about.html" class="nav-link">ABOUT</a>
+    <a href="../contact.html" class="nav-link ">CONTACT</a>
+  </nav>
+</header>
+<!-- Overlay menu (mobile) – nền trắng, chữ đen như mockup -->
+<nav class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+  <div class="overlay-inner">
+    <button class="overlay-close" aria-label="Đóng menu">&times;</button>
+    <a href="../index.html" class="overlay-link">PORTFOLIO</a>
+    <a href="../showreel.html" class="overlay-link">SHOWREEL</a>
+    <a href="../about.html" class="overlay-link">ABOUT</a>
+    <a href="../contact.html" class="overlay-link">CONTACT</a>
+  </div>
+</nav>
+
+
+   <!-------------------------------------------------------------------------------------------------------- -->
+   <!-- Wedding Section -->
+
+
+<section class="wedding-video-section">
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/Pn7lFyh8l5A?autoplay=1&mute=1&loop=1&playlist=Pn7lFyh8l5A&controls=1&modestbranding=1&rel=0&playsinline=1"
+      title="YouTube video player"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="gallery-grid">
+    <img src="./img/Erik & Han Sara- final.00_00_19_08.Still001.jpg" alt="Frame 1" />
+    <img src="./img/Erik & Han Sara- final.00_00_29_24.Still002.jpg" alt="Frame 2" />
+    <img src="./img/Erik & Han Sara- final.00_02_27_20.Still003.jpg" alt="Frame 3" />
+    <img src="./img/Erik & Han Sara- final.00_02_56_07.Still004.jpg" alt="Frame 4" />
+    <img src="./img/Erik & Han Sara- final.00_03_12_23.Still005.jpg" alt="Frame 5" />
+    <img src="./img/Erik & Han Sara- final.00_03_43_06.Still006.jpg" alt="Frame 6" />
+
+    <!-- Bạn thêm bao nhiêu ảnh cũng được, nó sẽ tự xuống hàng -->
+  </div>
+</section>
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+  <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+  <a class="next" onclick="changeImage(1)">&#10095;</a>
+</div>
+<script>
+  const images = document.querySelectorAll('.gallery-grid img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  let currentIndex = 0;
+
+  const imageArray = Array.from(images).map(img => img.src);
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'block';
+      lightboxImg.src = img.src;
+      currentIndex = index;
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+  }
+
+  function changeImage(n) {
+    currentIndex += n;
+    if (currentIndex < 0) currentIndex = imageArray.length - 1;
+    if (currentIndex >= imageArray.length) currentIndex = 0;
+    lightboxImg.src = imageArray[currentIndex];
+  }
+
+  window.addEventListener('keydown', function (e) {
+    if (lightbox.style.display === 'block') {
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+</script>
+<!-------------------------------------------------------------------------------------------------------- -->
+<script>
+  (function () {
+    const burger = document.querySelector('.hamburger');
+    const overlay = document.getElementById('mobileOverlay');
+
+    if (!burger || !overlay) return;
+
+    function openMenu() {
+      burger.classList.add('is-active');
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+      burger.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      burger.classList.remove('is-active');
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+
+    burger.addEventListener('click', () => {
+      overlay.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    // Đóng khi click link hoặc bấm ra ngoài / phím ESC
+    overlay.addEventListener('click', (e) => {
+      if (e.target.classList.contains('overlay-link') || e.target.classList.contains('overlay-close') || e.target === overlay) {
+        closeMenu();
+      }
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+
+ <!-------------------------------------------------------------------------------------------------------- -->
+<section class="bts-section">
+  <div class="bts-title">
+    <h2><em>Behind-the-scenes</em></h2>
+  </div>
+  <div class="bts-content">
+    <p> This project is the official music video for the Korean version of the song "Dù Cho Tận Thế," featuring a special collaboration between artists Erik and Han Sara. The MV was produced entirely within a professional studio setting, utilizing a two-camera setup with a Sony A74 and a Sony A73. The primary lighting was artistically crafted with a Nanlite 300W fixture to create a soft, cinematic atmosphere that complements the romantic melody of the song.</p>
+    <p>
+ To maximize visual and emotional impact, a dynamic filming strategy was implemented:
+
+Camera 1 (Sony A73): Mounted on a tripod and equipped with a wide-angle Tamron 16-30mm lens. This camera was tasked with capturing a stable, narrative-driven wide shot of the studio set, encompassing the interaction between Erik and Han Sara.
+
+Camera 2 (Sony A74): Mounted on a gimbal and paired with the versatile Tamron 28-75mm lens. This setup provided fluid movement for graceful medium shots and close-ups, focusing intently on the artists' facial expressions, eye contact, and tender gestures to create smooth, emotionally rich footage.
+
+The entire music video was filmed in multiple takes to ensure the most perfect and synergistic moments were captured. In post-production, a multicam editing technique was used to synchronize and seamlessly switch between the two camera angles. This resulted in a final product that is cohesive, emotionally resonant, and visually captivating, fully conveying the love story embodied in the song.
+    </p>
+  </div>
+</section>
+<!-- <section class="carousel-section">
+  <div class="carousel-track">
+    <img src="./imgbts/IMG_0709.jpg" alt="Frame 1">
+    <img src="./imgbts/IMG_0710.jpg" alt="Frame 2">
+    <img src="./imgbts/IMG_0713.jpg" alt="Frame 3">
+    <img src="./imgbts/IMG_0714.jpg" alt="Frame 4">
+    <img src="./imgbts/IMG_0716.jpg" alt="Frame 5">
+    <img src="./imgbts/IMG_0717.jpg" alt="Frame 6">
+    <img src="./imgbts/IMG_0719.jpg" alt="Frame 7"> -->
+    <!-- Duplicate for infinite loop effect -->
+    <!-- <img src="./imgbts/IMG_0709.jpg" alt="Frame 1 Duplicate">
+    <img src="./imgbts/IMG_0710.jpg" alt="Frame 2 Duplicate">
+    <img src="./imgbts/IMG_0713.jpg" alt="Frame 3 Duplicate">
+    <img src="./imgbts/IMG_0714.jpg" alt="Frame 4 Duplicate">
+    <img src="./imgbts/IMG_0716.jpg" alt="Frame 5 Duplicate">
+    <img src="./imgbts/IMG_0717.jpg" alt="Frame 6 Duplicate">
+    <img src="./imgbts/IMG_0719.jpg" alt="Frame 7 Duplicate">
+  </div> -->
+
+  <!-- <div class="carousel-title">
+    <h2>BEHIND THE SCENES <br><span>Photo</span></h2>
+    <p>Filmed on the Sony A6700 with 18–135mm, 24–70mm, and 11mm lenses using an ND filter, this project captures a girl’s peaceful daily life — gardening, cooking, and reading — at a vintage homestay in Da Lat.
+Shot entirely under natural light, the visuals reflect the warmth, calmness, and nostalgic beauty of slow living.</p>
+  </div> -->
+<!-- </section> -->
+<div class="project-navigation">
+  <!-- Nút bên trái: Dự án trước đó -->
+  <a href="previous-project.html" class="project-btn btn-left">
+    <span class="arrow">❮</span> Previous Project
+  </a>
+
+  <!-- Nút bên phải: Dự án tiếp theo -->
+  <a href="next-project.html" class="project-btn btn-right">
+    Next Project <span class="arrow">❯</span>
+  </a>
+</div>
+
+
+
+
+
+<footer class="site-footer">
+  <div class="footer-wrapper">
+    <div class="social-icons">
+      <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/NyMikiyoDo" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    <p class="copyright">
+      © 2025 Quốc Bảo – quocbao291200@gmail.com
+    </p>
+  </div>
+</footer>
+</html>

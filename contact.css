@@ -1,3 +1,16 @@
+/* --- SMOOTH SCROLL & HIDE SCROLLBAR --- */
+html, body {
+  scroll-behavior: smooth;
+  /* Ẩn scrollbar cho IE, Edge và Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Ẩn scrollbar cho Chrome, Safari và Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
 body {
   margin: 0;
   background-color: #000;
